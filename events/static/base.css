@@ -1,0 +1,141 @@
+html{
+    background-color: aqua;
+    margin: 20px;
+}
+.my-table{
+    width: 90%;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.my-table td{
+    border: 1px solid black;
+    padding: 10px;
+}
+.card{
+    padding: 20px;
+}
+.card-body{
+    border: 1px dashed black;
+    border-radius: 25px;
+    padding: 10px;
+}
+.card-header{
+    font-size: larger;
+    font-weight: bolder;
+}
+.card-update{
+    background-color: orangered;
+    padding: 10px;
+    border: transparent;
+    border-radius: 25px;
+}
+.card-update a{
+    text-decoration: none;
+}
+.card-delete{
+    background-color: red;
+    padding: 10px;
+    border: transparent;
+    border-radius: 25px;
+}
+.card-delete a{
+    text-decoration: none;
+}
+.card-body-outdated{
+    border: 1px dashed black;
+    border-radius: 25px;
+    padding: 10px;
+    pointer-events: painted;
+}
+.card-header-outdated{
+    opacity: 0.5;
+}
+.card-update-outdated{
+    opacity: 0.5;
+    pointer-events: none;
+}
+.card-delete-outdated{
+    opacity: 1;
+}
+.myform1{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 25px;
+}
+.myform1 input{
+    width: 60%;
+    border-radius: 25px;
+}
+.my-inputs{
+    width: 100%;
+    border-radius: 25px;
+}
+.myform1 select{
+    width: 50%;
+    border-radius: 25px;
+    padding:5px;
+}
+.myform1 textarea{
+    width: 50%;
+    border-radius: 25px;
+    padding: 10px;
+}
+.mysubmit{
+    width:10%;
+    background-color: orangered;
+    border-radius: 25px;
+}
+.search-input{
+    width: 50%;
+    border-radius: 25px;
+    margin: 20px;
+}
+.search-btn{
+    border-radius: 25px;
+    padding: 10px;
+    background-color: #fff;
+    color: black;
+    border: transparent;
+}
+.my-card-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.venue-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 3px dashed black;
+    border-radius: 25px;
+    height: 400px;
+}
+.venue-text{
+    padding: 20px;
+    margin: 10px;
+}
+.venue-images{
+    padding: 10px;
+    margin: 10px;
+    max-width: 100%;
+}
+@media screen and (max-width:992px) {
+    .venue-images{
+        max-width: 50%;
+    }
+}
+@media screen and (max-width:600px) {
+    .venue-container{
+        flex-direction: column;
+        height: auto;
+    }
+    .venue-text{
+        padding: 10px;
+        margin: 5px;
+    }
+    .venue-images{
+        padding-bottom:10px;
+        max-width: fit-content;
+    }
+}

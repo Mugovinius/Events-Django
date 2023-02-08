@@ -1,0 +1,35 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+        <!--<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    </head>
+    <body>
+        {%block content%}
+            <div class="venue-container">
+                <div class="venue-text">
+                    <h1>{{ venue }}</h1>    
+                    <br>
+                    Address: {{venue.address}}<br>
+                    Zipcode: {{venue.zip_code}}<br>
+                    Phone: {{venue.phone}}<br>
+                    Web-Address: <a href="{{venue.web}}">{{venue.web}}</a><br>
+                    Email-Address: {{venue.email_address}}
+                </div>
+                {%if venue.venue_image%}
+                    <img src="{{venue.venue_image.url}}" class="venue-images">
+                {%endif%}
+            </div>
+        {%endblock%}
+        <!--<script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>-->
+    </body>
+</html>
+

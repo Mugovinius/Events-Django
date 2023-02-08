@@ -1,0 +1,68 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <link rel="stylesheet" href="{%static 'venue.css'%}">
+        <!--bootstrap-->
+        <!--<link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">-->
+        <!--stylesheet-->
+        
+        <!--<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    </head>
+    <body>
+        {%block content%}
+            <center>
+                <h1>My Venues</h1>
+            </center>
+                {% for venue in venues %}
+                        <div class="venue-container">
+                            <div class="venue-text">
+                                <h1>{{ venue }}</h1>    
+                                <br>
+                                Address: {{venue.address}}<br>
+                                Zipcode: {{venue.zip_code}}<br>
+                                Phone: {{venue.phone}}<br>
+                                Web-Address: <a href="{{venue.web}}">{{venue.web}}</a><br>
+                                Email-Address: {{venue.email_address}}
+                                <br>
+                                <button class="card-update">
+                                    <a href="{% url 'update-venue' venue.id %}">Update</a>
+                                </button>
+                                <button class="card-delete">
+                                    <a href="{% url 'delete-venue' venue.id %}">Delete</a>
+                                </button>
+                            </div>
+                            {%if venue.venue_image%}
+                                <img src="{{venue.venue_image.url}}" class="venue-images">
+                            {%endif%}
+                        </div>
+                        <br><br>
+                    {%endfor%}
+                <!--
+                <table class="my-table">
+                    {% for venue in venues %}      
+                    <tr>
+                        <td>
+                            <a href="{% url 'show-venue' venue.id %}">{{ venue }}</a>
+                        </td>
+                        <td align="right">
+                            <a href="{% url 'update-venue' venue.id %}">Update</a>
+                        </td>
+                        <td align="right">
+                            <a href="{% url 'delete-venue' venue.id %}">Delete</a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            -->
+        {%endblock%}
+        <!--<script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>-->
+    </body>
+</html>
+

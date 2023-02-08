@@ -1,0 +1,88 @@
+html{
+    box-sizing: border-box;
+}
+.b-img{
+    width:100%;
+    z-index: 0;
+    position: relative;
+}
+.logo{
+    padding: 20px;
+    max-width: 70%;
+}
+nav{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background:transparent;
+    left: 10px;
+    top: 10px;
+    right: 50px;
+    position: absolute;
+    z-index: 1;
+    border-bottom: 2px solid #fff;
+    background-color: black;
+}
+.links li{
+    display: inline-block;
+    list-style-type: none;
+    padding: 20px;
+}
+.links a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.my-btn{
+    border-radius: 25px;
+    padding: 20px;
+    background-color: #fff;
+    color: black;
+    border: transparent;
+}
+.search-btn{
+    border-radius: 25px;
+    padding: 10px;
+    background-color: #fff;
+    color: black;
+    border: transparent;
+}
+.nav-toggle{
+    background: transparent;
+    border: transparent;
+    display: none;
+    color: #fff;
+}
+.my-input{
+    border-radius: 25px;
+    width:150px;
+    height:40px;
+}
+@media screen and (max-width:992px) {
+    #hide{
+        display: none;
+    }
+    .logo{
+        max-width: 30%;
+    }
+    .nav-toggle{
+        display: block;
+        margin-right: 10px;
+    }
+}
+@media screen and (max-width:600px) {
+    #hide{
+        display: none;
+    }
+    .logo{
+        max-width: 10%;
+    }
+    .links li{
+        padding: 2px;
+    }
+    .nav-toggle{
+        display: block;
+        margin-right: 10px;
+    }
+}

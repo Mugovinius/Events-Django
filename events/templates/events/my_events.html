@@ -1,0 +1,77 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+        <!--<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">-->
+        <!--stylesheet-->
+        <!--<link rel="stylesheet" href="{% static 'events.css'%}">-->
+    </head>
+    <body>
+        {%block content%}
+            <h1>My Events</h1>
+            <div class="card">
+            {% for event in events%}
+                {%if event.Is_Past == 0%}
+                    <h2>Past Events</h2>
+                    <div class="card-header-outdated">
+                        {{event}}
+                    </div>
+                    <div class="card-body-outdated">
+                        <h5 class="card-title-outdated">Venue: {{event.venue}}</h5>
+                    <ul>
+                        <li>Date: {{event.event_date}}</li> 
+                        <li>Manager: {{event.manager}}</li>
+                        <li>Description: {{event.description}}</li>
+                        <li> Attendees:
+                            {% for user in event.attendees.all%}
+                            {{user}},
+                            {%endfor%}
+                        </li>
+                        </ul>
+                        <button class="card-update-outdated">
+                            <a href="{% url 'update-event' event.id %}">Update Event</a>
+                        </button>
+                        <button class="card-delete">
+                            <a href="{% url 'delete-event' event.id %}">Delete Event</a>
+                        </button>
+                    </div>
+                {%else%}
+                    <h2>Ongoing Events</h2>
+                    <div class="card-header">
+                            {{event}}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Venue: {{event.venue}}</h5>
+                    <ul>
+                        <li>Date: {{event.event_date}}</li> 
+                        <li>Manager: {{event.manager}}</li>
+                        <li>Description: {{event.description}}</li>
+                        <li> Attendees:
+                            {% for user in event.attendees.all%}
+                            {{user}},
+                            {%endfor%}
+                        </li>
+                        </ul>
+                        <button class="card-update">
+                            <a href="{% url 'update-event' event.id %}">Update Event</a>
+                        </button>
+                        <button class="card-delete">
+                            <a href="{% url 'delete-event' event.id %}">Delete Event</a>
+                        </button>
+                    </div>
+                {%endif%}
+            {% endfor %}
+            </div>          
+        {%endblock%}
+        <script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>
+    </body>
+</html>
+

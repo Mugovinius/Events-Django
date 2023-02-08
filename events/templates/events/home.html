@@ -1,0 +1,23 @@
+{% extends 'events/base.html' %}
+<!DOCTYPE html>
+<html>
+    <body>
+        {%block content%}
+            <center>
+                <h1>HEllo {{ name}} Events For {{ month}} {{ year}}</h1>
+                <p> {{cal|safe}}</p>
+                <br><br>
+                <p>Copyright (C) {{current_year}}</p>
+                <br>
+                <h2>Events This Month</h2>
+                {% if event_list%}
+                    {%for event in event_list%}
+                        <a href="{% url 'show-event' event.id %}">{{event}}</a><br><br>
+                    {%endfor%}
+                {%else%}
+                    There are no events this month...
+                {%endif%}
+            </center>
+        {%endblock%}
+    </body>
+</html>

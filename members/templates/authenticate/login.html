@@ -1,0 +1,31 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+    </head>
+    <body>
+        {%block content%}
+            <center>
+                <h1>Login</h1>             
+                    <form action="" method=POST class="myform1">
+                        {% csrf_token %}
+                        <label for="myname">Username:</label>
+                        <input type="text" name="username" class="myinput"><br><br><br>
+                        <label for="mypassword">Password:</label>
+                        <input type="password" name="password" class="myinput"><br><br><br>
+                        <input type="submit" value="Submit" class="mysubmit">
+                    </form>
+            </center>
+        {%endblock%}
+        <!--<script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>-->
+    </body>
+</html>

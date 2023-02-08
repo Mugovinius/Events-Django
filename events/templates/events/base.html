@@ -1,0 +1,23 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{%static 'base.css'%}">
+    </head>
+    <body>
+        {% include 'events/navbar.html' %}
+        <br><br><br>
+        <br><br><br>
+        <br>
+        <div class="container">
+            {% if messages %}
+                {% for message in messages%}
+                    {{message}}
+                {%endfor%}
+            {%endif%}
+            {%block content%}
+            {% endblock %}
+        </div>
+        <br><br>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+        <!--<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">-->
+        <!--stylesheet-->
+        <!--<link rel="stylesheet" href="{% static 'events.css'%}">-->
+    </head>
+    <body>
+        {%block content%}
+        <center>
+            <h1>Events</h1>
+            <br>
+            <form method=POST action ="{% url 'search-events'%}">
+                {% csrf_token%}
+                <input type="search" name="searched" class="search-input" placeholder="Search Events">
+                <br><br>
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+            <br>
+        </center>
+            <div class="card">
+            {% for event in event_list%}
+                {% if event.approved%}
+                    {% if event.Is_Past == 0%}
+
+                    {%else%}
+                        <div class="card-header">
+                                {{event}}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Venue: {{event.venue}}</h5>
+                        <ul>
+                            <li>Date: {{event.event_date}}</li> 
+                            <li>Days Till Event: {{event.Days_till}}</li>
+                            <li>Manager: {{event.manager}}</li>
+                            <li>Description: {{event.description}}</li>
+                            <li> Attendees:
+                                {% for user in event.attendees.all%}
+                                {{user}},
+                                {%endfor%}
+                            </li>
+                            </ul>
+                            {% if user.is_authenticated%}
+                                {%if user == event.manager%}
+                                    <button class="card-update">
+                                        <a href="{% url 'update-event' event.id %}">Update Event</a>
+                                    </button>
+                                    <button class="card-delete">
+                                        <a href="{% url 'delete-event' event.id %}">Delete Event</a>
+                                    </button>
+                                {%endif%}
+                            {%endif%}
+                        </div>
+                    {%endif%}
+                {%endif%}
+            {% endfor %}
+            </div>          
+        {%endblock%}
+        <script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>
+    </body>
+</html>
+

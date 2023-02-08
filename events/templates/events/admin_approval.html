@@ -1,0 +1,45 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+    </head>
+    <body>
+        {%block content%}
+            <h1>Admin Dashboard</h1>
+            <br>
+                <form action="" method=POST>
+                    {%csrf_token%}
+                <table class="my-table">
+                    <tr>
+                        <th> Event Name</th>
+                        <th>Approval Status</th>
+                    </tr>
+                    {%for event in event_list%}
+                    <tr>
+                        <td> {{event}}</td>
+                        <td>
+                            {%if event.approved%}
+                                <input type="checkbox" checked="checked" value={{event.id}} name="cboxes">
+                            {%else%}
+                                <input type="checkbox" value={{event.id}}, name="cboxes">
+                            {%endif%}
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </table>
+                <br/><br/>
+                <button class="card-update" type="submit">Update Status</button>
+        {%endblock%}
+        <!--<script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>-->
+    </body>
+</html>
+

@@ -1,0 +1,42 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+        <!--<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    </head>
+    <body>
+        {%block content%}
+            {%if user.is_authenticated%}
+                {% if user == event.manager%}
+                    <center>
+                        <h1>Update Event</h1>
+                        <form action="" method=POST class="myform1">
+                            {% csrf_token %}
+                            {{ form.as_p}}
+                            <input type="submit" value="Update" class="mysubmit">
+                        </form>
+                    </center>
+                {%else%}
+                    Access Denied! Only the event's manager can update this event 
+                    <br>
+                    Logged in User: {{user}}
+                    <br>
+                    Event manager: {{event.manager}}
+                {%endif%}
+            {%else%}
+                <h1>Sorry! You must be Logged In to view this page...</h1>
+                <a href="{% url 'login' %}">Login Here</a>
+            {%endif%}
+        {%endblock%}
+        <!--<script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>-->
+    </body>
+</html>
+

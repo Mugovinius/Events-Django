@@ -1,0 +1,55 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+        <!--<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    </head>
+    <body>
+        {%block content%}
+                {% if searched %}
+                    <div>
+                        <h1>You Searched For {{searched}}</h1>
+                        <a href="{% url 'events_list'%}" style="text-decoration:none;">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            Back
+                        </a>
+                    </div>
+                    {% for event in events %}
+                        {%if event.Is_Past == 0%}
+                            No such event currently
+                        {%else%}
+                            <div class="card">
+                                <div class="card-header">
+                                        {{event}}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Venue: {{event.venue}}</h5>
+                                <ul>
+                                    <li>Date: {{event.event_date}}</li> 
+                                    <li>Manager: {{event.manager}}</li>
+                                    <li>Description: {{event.description}}</li>
+                                    <li> Attendees:
+                                        {% for user in event.attendees.all%}
+                                        {{user}},
+                                        {%endfor%}
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {%endif%}
+                    {%endfor%}
+                {%else%}
+                    <h1>Search an event...</h1>
+                {%endif%}
+        {%endblock%}
+    </body>
+</html>
+

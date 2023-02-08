@@ -1,0 +1,39 @@
+{% extends 'events/base.html' %}
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Vinicious"/>
+        <meta charset = "UTF-8"/>
+        <!--fontawesome-->
+        <link rel="stylesheet" href="{% static 'fontawesome-free-6.2.0-web\css\all.min.css'%}">
+        <!--bootstrap-->
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+        <link rel="stylesheet" href="{%static 'bootstrap-5.0.2-dist\css\bootstrap.min.css'%}">
+    </head>
+    <body>
+        {%block content%}
+            {%if user.is_authenticated%}
+                <center>
+                    <h1>Add Event To Database </h1>
+                    {% if submitted%}
+                        Your Event was submitted
+                        Succesfully !!
+                    {%else%}                
+                        <form action="" method=POST class="myform1">
+                            {% csrf_token %}
+                            {{ form.as_p}}
+                            <input type="submit" value="Submit" class="mysubmit">
+                        </form>
+                    {%endif%}
+                </center>
+            {%else%}
+                <h1>Sorry! You must be Logged In to view this page...</h1>
+                <a href="{% url 'login' %}">Login Here</a>
+            {%endif%}
+        {%endblock%}
+        <!--<script src="{%static 'bootstrap-5.0.2-dist\js\bootstrap.bundle.min.js'%}"></script>-->
+    </body>
+</html>
+
