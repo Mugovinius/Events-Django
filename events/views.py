@@ -241,7 +241,7 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
     now = datetime.now()
     current_year = now.year
     return render(request,
-     'events/home.html',{
+     'events/index.html',{
         "name": name,
         "year": year,
         "month": month,
